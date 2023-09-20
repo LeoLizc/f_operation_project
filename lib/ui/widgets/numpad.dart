@@ -85,3 +85,64 @@ class Numpad extends StatelessWidget {
     );
   }
 }
+
+class NumpadInput extends StatefulWidget {
+  final Function(String)? onKeyPressed;
+  final Function()? onClearPressed;
+  final Function()? onGoPressed;
+
+  const NumpadInput({
+    super.key,
+    this.onClearPressed,
+    this.onGoPressed,
+    this.onKeyPressed,
+  });
+
+  @override
+  NumpadInputState createState() => NumpadInputState();
+}
+
+class NumpadInputState extends State<NumpadInput> {
+  String _input = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          _input,
+          style: const TextStyle(fontSize: 32, color: Colors.black),
+        ),
+        Numpad(
+          onKeyPressed: _onKeyPressed,
+          onClearPressed: _onClearPressed,
+          onGoPressed: _onGoPressed,
+        ),
+      ],
+    );
+  }
+
+  void _onKeyPressed(String key) {
+    setState(() {
+      _input += key;
+    });
+    if (widget.onKeyPressed != null) {
+      widget.onKeyPressed!(_input);
+    }
+  }
+
+  void _onClearPressed() {
+    setState(() {
+      _input = '';
+    });
+    if (widget.onClearPressed != null) {
+      widget.onClearPressed!();
+    }
+  }
+
+  void _onGoPressed() {
+    if (widget.onGoPressed != null) {
+      widget.onGoPressed!();
+    }
+  }
+}
