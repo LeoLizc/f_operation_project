@@ -204,14 +204,20 @@ class RegistroP extends State<Registro> {
                     onPressed: () {
                       if (_formulario.currentState!.validate()) {
                         Get.snackbar("Felicidades", "Registro exitoso");
-                        authController.register(
-                            birthDay: int.parse(_birthDay.text),
-                            birthMonth: int.parse(_birthMonth.text),
-                            birthYear: int.parse(_birthYear.text),
-                            grade: int.parse(_grade.text),
-                            school: _school.text,
-                            username: _user.text,
-                            password: _password1.text);
+                        authController
+                            .register(
+                                birthDay: int.parse(_birthDay.text),
+                                birthMonth: int.parse(_birthMonth.text),
+                                birthYear: int.parse(_birthYear.text),
+                                grade: int.parse(_grade.text),
+                                school: _school.text,
+                                username: _user.text,
+                                password: _password1.text)
+                            .then((value) {
+                          if (value) {
+                            Get.offAllNamed('/');
+                          }
+                        });
                       }
                     },
                     child: const Text("Registro exitoso")),

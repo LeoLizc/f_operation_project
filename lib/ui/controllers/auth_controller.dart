@@ -17,7 +17,7 @@ class AuthController extends GetxController {
     _isAuthenticated.value = await _authUseCase.logout();
   }
 
-  void register(
+  Future<bool> register(
       {required String username,
       required String password,
       required int grade,
@@ -32,5 +32,6 @@ class AuthController extends GetxController {
       difficultyLevel: 1,
     );
     _isAuthenticated.value = await _authUseCase.register(user);
+    return _isAuthenticated.value;
   }
 }
