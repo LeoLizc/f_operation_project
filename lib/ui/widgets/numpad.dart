@@ -89,7 +89,7 @@ class Numpad extends StatelessWidget {
 class NumpadInput extends StatefulWidget {
   final Function(String)? onKeyPressed;
   final Function()? onClearPressed;
-  final Function()? onGoPressed;
+  final Function(String)? onGoPressed;
 
   const NumpadInput({
     super.key,
@@ -111,7 +111,10 @@ class NumpadInputState extends State<NumpadInput> {
       children: [
         Text(
           _input,
-          style: const TextStyle(fontSize: 32, color: Colors.black),
+          style: const TextStyle(fontSize: 37, color: Colors.black),
+        ),
+        SizedBox(
+          height: 4,
         ),
         Numpad(
           onKeyPressed: _onKeyPressed,
@@ -142,7 +145,11 @@ class NumpadInputState extends State<NumpadInput> {
 
   void _onGoPressed() {
     if (widget.onGoPressed != null) {
-      widget.onGoPressed!();
+      widget.onGoPressed!(_input);
     }
+
+    setState(() {
+      _input = '';
+    });
   }
 }

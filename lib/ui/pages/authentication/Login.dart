@@ -1,15 +1,12 @@
 // ignore_for_file: file_names
 
+import 'package:f_operation_project/ui/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'registro.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key, required this.email, required this.password})
-      : super(key: key);
-
-  final String email;
-  final String password;
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => LoginP();
@@ -19,6 +16,7 @@ class LoginP extends State<Login> {
   final _formulario = GlobalKey<FormState>();
   final _user = TextEditingController();
   final _password = TextEditingController();
+  AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,6 @@ class LoginP extends State<Login> {
                 //campo en el cual el usuario va a ingresar su usuario
                 const Text("Ingrese su usuario",
                     style: TextStyle(fontSize: 20)),
-                const SizedBox(height: 20),
                 TextFormField(
                   key: const ValueKey("Usuario"),
                   controller: _user,
@@ -83,6 +80,7 @@ class LoginP extends State<Login> {
                     onPressed: () {
                       if (_formulario.currentState!.validate()) {
                         Get.snackbar("Bienvenido", "Iniciando seccion");
+                        authController.login(_user.text, _password.text);
                       }
                     },
                     child: const Text("Iniciar seccion")),
