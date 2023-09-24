@@ -1,7 +1,5 @@
 class User {
   final int? id;
-  // final String firstName;
-  // final String lastName;
   final String birthDate;
   final int grade;
   final String school;

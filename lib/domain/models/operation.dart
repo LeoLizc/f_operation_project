@@ -1,4 +1,3 @@
-// TODO: Complete the Operation class.
 class Operation {
   final int operando1;
   final int operando2;
