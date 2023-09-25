@@ -38,7 +38,7 @@ class GameUseCase {
       session.difficultyLevel -= 1;
     }
 
-    Auth me = await _authRepository.me();
+    Auth me = (await _authRepository.me())!;
     session.username = me.username;
 
     // Save session
