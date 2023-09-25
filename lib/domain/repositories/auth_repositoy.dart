@@ -6,5 +6,5 @@ abstract class AuthRepository {
   Future<bool> login(LoginModel auth);
   Future<bool> logout();
   Future<bool> register(Auth info);
-  Future<Auth> me();
+  Future<Auth?> me();
 }
