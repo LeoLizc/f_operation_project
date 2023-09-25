@@ -49,6 +49,7 @@ class RegisterModel {
     required String firstName,
     required String lastName,
   })  : userInformation = User(
+          username: username,
           birthDate: birthDate,
           grade: grade,
           school: school,
