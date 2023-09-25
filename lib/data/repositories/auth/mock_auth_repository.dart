@@ -1,20 +1,27 @@
-import 'package:f_operation_project/domain/models/user.dart';
+import 'package:f_operation_project/domain/models/auth.dart';
 
 import '../../../domain/repositories/auth_repositoy.dart';
 
 class MockAuthRepository implements AuthRepository {
+  final String _token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwZXBpdG9fcGVyZXoiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MjUxNjIzOTAyMn0.qDt0fuAin0bJtdO-1RTQgBvbHtC-0TBY7RkEJS2BKOE";
+
   @override
-  Future<User> getUser() async {
-    return User(
-      grade: 1,
-      school: "MockColegio",
-      birthDate: DateTime(2000, 1, 1).toString(),
-      difficultyLevel: 1,
-    );
+  String? get token => _token;
+
+  final Auth _auth = Auth(
+      username: "username",
+      password: "password",
+      firstName: "firstName",
+      lastName: "lastName");
+
+  @override
+  Future<Auth> me() async {
+    return _auth;
   }
 
   @override
-  Future<bool> login(String username, String password) async {
+  Future<bool> login(LoginModel loginInfo) async {
     return true;
   }
 
@@ -24,7 +31,7 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<bool> register(User user) async {
+  Future<bool> register(Auth user) async {
     return true;
   }
 }
