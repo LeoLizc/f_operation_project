@@ -1,8 +1,10 @@
+import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:f_operation_project/domain/models/user.dart';
 import 'package:f_operation_project/domain/use_cases/authentication_usecase.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
+  // * DEPENDENCIES
   final AuthenticationUseCase _authUseCase = Get.find<AuthenticationUseCase>();
 
   final RxBool _isAuthenticated = false.obs;
@@ -14,7 +16,7 @@ class AuthController extends GetxController {
   }
 
   void logout() async {
-    _isAuthenticated.value = await _authUseCase.logout();
+    _isAuthenticated.value = !(await _authUseCase.logout());
   }
 
   Future<bool> register(
@@ -25,11 +27,15 @@ class AuthController extends GetxController {
       required int birthDay,
       required int birthMonth,
       required int birthYear}) async {
-    User user = User(
+    RegisterModel user = RegisterModel(
       grade: grade,
       school: school,
       birthDate: DateTime(birthYear, birthMonth, birthDay).toString(),
       difficultyLevel: 1,
+      username: username,
+      password: password,
+      firstName: '',
+      lastName: '',
     );
     _isAuthenticated.value = await _authUseCase.register(user);
     return _isAuthenticated.value;
