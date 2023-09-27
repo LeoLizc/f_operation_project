@@ -6,7 +6,7 @@ class GameSession {
   int difficultyLevel;
 
   GameSession({
-    required this.id,
+    this.id,
     this.username,
     required this.tSeconds,
     required this.score,

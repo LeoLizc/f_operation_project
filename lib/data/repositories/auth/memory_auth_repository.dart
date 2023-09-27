@@ -16,6 +16,12 @@ class MemoryAuthRepository implements AuthRepository {
       firstName: "firstName",
       lastName: "lastName",
     ),
+    Auth(
+      username: "qwerty",
+      password: "asdfghjkl",
+      firstName: "firstName",
+      lastName: "lastName",
+    ),
   ];
 
   @override

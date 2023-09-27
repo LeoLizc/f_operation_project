@@ -26,16 +26,16 @@ class GameUseCase {
     return operation.resultado == answer;
   }
 
-  Future<void> cambiarDificultad(GameSession session) async {
+  Future<int> cambiarDificultad(GameSession session) async {
     if (session.score >= 3 && session.score < 5 ||
         session.tSeconds > 120 && session.tSeconds <= 300) {
-      return;
+      return session.difficultyLevel;
     }
-
+    int newDifficultyLevel = session.difficultyLevel;
     if (session.score > 5 && session.tSeconds <= 120) {
-      session.difficultyLevel += 1;
+      newDifficultyLevel = session.difficultyLevel + 1;
     } else if (session.score < 3 && session.tSeconds > 300) {
-      session.difficultyLevel -= 1;
+      newDifficultyLevel = session.difficultyLevel - 1;
     }
 
     Auth me = (await _authRepository.me())!;
@@ -43,5 +43,6 @@ class GameUseCase {
 
     // Save session
     await _sessionRepository.addSession(session);
+    return newDifficultyLevel;
   }
 }
