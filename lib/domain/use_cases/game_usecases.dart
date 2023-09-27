@@ -38,19 +38,27 @@ class GameUseCase {
       newDifficultyLevel = session.difficultyLevel - 1;
     }
 
-    Auth me = (await _authRepository.me())!;
-    session.username = me.username;
+    Future(() async {
+      Auth me = (await _authRepository.me())!;
+      session.username = me.username;
 
-    if (newDifficultyLevel != session.difficultyLevel) {
-      // Get the user
-      User user = await _userRepository.getUser(username: me.username);
-      // Update and save the user
-      user.difficultyLevel = newDifficultyLevel;
-      _userRepository.updateUser(user);
-    }
+      if (newDifficultyLevel != session.difficultyLevel) {
+        // Get the user
+        User user = await _userRepository.getUser(username: me.username);
+        // Update and save the user
+        user.difficultyLevel = newDifficultyLevel;
+        _userRepository.updateUser(user);
+      }
 
-    // Save session
-    _sessionRepository.addSession(session);
+      // Save session
+      _sessionRepository.addSession(session);
+    });
     return newDifficultyLevel;
+  }
+
+  Future<int> getDifficultyLevel() async {
+    Auth me = (await _authRepository.me())!;
+    User user = await _userRepository.getUser(username: me.username);
+    return user.difficultyLevel;
   }
 }

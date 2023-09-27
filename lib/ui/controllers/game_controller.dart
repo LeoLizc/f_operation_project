@@ -44,8 +44,8 @@ class GameController extends GetxController {
         ),
       );
       startGame();
-      print(_currentOperationIndex.value);
-      print(_operations.length);
+      // print(_currentOperationIndex.value);
+      // print(_operations.length);
       return true;
     }
 

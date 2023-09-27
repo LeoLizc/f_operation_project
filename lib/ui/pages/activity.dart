@@ -28,7 +28,7 @@ class ActivityPage extends StatelessWidget {
                   // return Text('Hola');
                   if (controller.operation == null) {
                     return const Text(
-                      'No hay operaciones',
+                      'Cargando operaciones...',
                       style: TextStyle(fontSize: 37),
                     );
                   }
