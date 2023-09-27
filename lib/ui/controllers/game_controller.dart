@@ -9,7 +9,7 @@ class GameController extends GetxController {
   final RxList<Operation> _operations = <Operation>[].obs;
   final RxInt _currentOperationIndex = 0.obs;
   int _score = 0;
-  int level = 1;
+  int level = 0;
 
   Operation? get operation {
     if (_currentOperationIndex.value >= _operations.length) {
@@ -21,9 +21,13 @@ class GameController extends GetxController {
   get score => _score;
   get operationIndex => _currentOperationIndex.value;
 
-  void startGame() {
+  void startGame() async {
     _operations.clear();
     _score = 0;
+
+    if (level == 0) {
+      level = await _gameUseCase.getDifficultyLevel();
+    }
 
     _operations.assignAll(_gameUseCase.startGame(level));
     _currentOperationIndex.value = 0;
