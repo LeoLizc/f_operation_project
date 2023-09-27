@@ -11,6 +11,8 @@ class ActivityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final GameController controller = Get.find();
 
+    controller.startGame();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Activity'),
