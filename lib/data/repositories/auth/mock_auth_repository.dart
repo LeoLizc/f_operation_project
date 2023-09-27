@@ -34,4 +34,7 @@ class MockAuthRepository implements AuthRepository {
   Future<bool> register(Auth user) async {
     return true;
   }
+
+  @override
+  bool get isLogged => true;
 }

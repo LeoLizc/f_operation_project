@@ -9,6 +9,9 @@ class MemoryAuthRepository implements AuthRepository {
   @override
   String? get token => _token;
 
+  @override
+  bool get isLogged => _token != null;
+
   final List<Auth> _users = [
     Auth(
       username: "username",
