@@ -57,6 +57,7 @@ class LoginP extends State<Login> {
                     style: TextStyle(fontSize: 20)),
                 TextFormField(
                   key: const ValueKey("Contraseña"),
+                  obscureText: true,
                   controller: _password,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
