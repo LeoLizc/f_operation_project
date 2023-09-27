@@ -4,7 +4,7 @@ class User {
   final String birthDate;
   final int grade;
   final String school;
-  final int difficultyLevel;
+  int difficultyLevel;
 
   User({
     this.id,

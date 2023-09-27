@@ -34,8 +34,6 @@ class RetoolUserDataSource {
   }
 
   Future<bool> createUser(User user) async {
-    print(user.toJson());
-
     final response = await http.post(
       Uri.parse(_url),
       headers: <String, String>{

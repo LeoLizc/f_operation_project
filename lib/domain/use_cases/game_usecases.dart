@@ -1,13 +1,16 @@
 import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:f_operation_project/domain/models/operation.dart';
 import 'package:f_operation_project/domain/models/session.dart';
+import 'package:f_operation_project/domain/models/user.dart';
 import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
 import 'package:f_operation_project/domain/repositories/session_repository.dart';
+import 'package:f_operation_project/domain/repositories/user_repository.dart';
 import 'package:get/get.dart';
 
 class GameUseCase {
   final AuthRepository _authRepository = Get.find<AuthRepository>();
   final SessionRepository _sessionRepository = Get.find<SessionRepository>();
+  final UserRepository _userRepository = Get.find<UserRepository>();
 
   List<Operation> startGame(int difficultyLevel) {
     List<Operation> operations = [];
@@ -27,11 +30,8 @@ class GameUseCase {
   }
 
   Future<int> cambiarDificultad(GameSession session) async {
-    if (session.score >= 3 && session.score < 5 ||
-        session.tSeconds > 120 && session.tSeconds <= 300) {
-      return session.difficultyLevel;
-    }
     int newDifficultyLevel = session.difficultyLevel;
+
     if (session.score > 5 && session.tSeconds <= 120) {
       newDifficultyLevel = session.difficultyLevel + 1;
     } else if (session.score < 3 && session.tSeconds > 300) {
@@ -41,8 +41,16 @@ class GameUseCase {
     Auth me = (await _authRepository.me())!;
     session.username = me.username;
 
+    if (newDifficultyLevel != session.difficultyLevel) {
+      // Get the user
+      User user = await _userRepository.getUser(username: me.username);
+      // Update and save the user
+      user.difficultyLevel = newDifficultyLevel;
+      _userRepository.updateUser(user);
+    }
+
     // Save session
-    await _sessionRepository.addSession(session);
+    _sessionRepository.addSession(session);
     return newDifficultyLevel;
   }
 }

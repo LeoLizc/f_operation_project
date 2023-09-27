@@ -30,4 +30,10 @@ class MemoryUserRepository implements UserRepository {
     return Future.value(_users
         .firstWhere((user) => user.id == id! || user.username == username));
   }
+
+  @override
+  Future<User> updateUser(User user) {
+    _users[_users.indexWhere((element) => element.id == user.id)] = user;
+    return Future.value(user);
+  }
 }

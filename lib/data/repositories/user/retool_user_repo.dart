@@ -19,4 +19,9 @@ class RetoolUserRepository implements UserRepository {
   Future<User> getUser({int? id, String? username}) {
     return _dataSource.getUser(id: id, username: username);
   }
+
+  @override
+  Future<User> updateUser(User user) {
+    return _dataSource.updateUser(user);
+  }
 }

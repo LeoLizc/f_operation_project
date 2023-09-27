@@ -4,6 +4,6 @@ abstract class UserRepository {
   Future<User> getUser({int? id, String? username});
   // Future<List<User>> getUsers();
   Future<bool> addUser(User user);
-  // Future<bool> updateUser(User user);
+  Future<User> updateUser(User user);
   Future<bool> deleteUser(User user);
 }
