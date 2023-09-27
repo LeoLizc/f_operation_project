@@ -79,8 +79,16 @@ class LoginP extends State<Login> {
                     key: const ValueKey("Iniciar"),
                     onPressed: () {
                       if (_formulario.currentState!.validate()) {
-                        Get.snackbar("Bienvenido", "Iniciando seccion");
-                        authController.login(_user.text, _password.text);
+                        authController
+                            .login(_user.text, _password.text)
+                            .then((value) {
+                          if (value) {
+                            Get.snackbar("Bienvenido", "Iniciando seccion");
+                          } else {
+                            Get.snackbar(
+                                "Error", "Usuario o contraseña incorrectos");
+                          }
+                        });
                       }
                     },
                     child: const Text("Iniciar seccion")),
@@ -89,9 +97,7 @@ class LoginP extends State<Login> {
                 OutlinedButton(
                     key: const ValueKey("Registrarse"),
                     onPressed: () {
-                      Get.to(const Registro(
-                        key: Key("Registro"),
-                      ));
+                      Get.toNamed('register');
                     },
                     child: const Text("Registrarse")),
               ],
