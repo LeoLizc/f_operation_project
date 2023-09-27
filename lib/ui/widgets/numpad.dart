@@ -113,7 +113,7 @@ class NumpadInputState extends State<NumpadInput> {
           _input,
           style: const TextStyle(fontSize: 37, color: Colors.black),
         ),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         Numpad(

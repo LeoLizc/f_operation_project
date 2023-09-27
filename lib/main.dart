@@ -1,6 +1,8 @@
 import 'package:f_operation_project/data/repositories/auth/memory_auth_repository.dart';
-import 'package:f_operation_project/data/repositories/session/memory_session_repo.dart';
-import 'package:f_operation_project/data/repositories/user/memory_user_repo.dart';
+// import 'package:f_operation_project/data/repositories/session/memory_session_repo.dart';
+import 'package:f_operation_project/data/repositories/session/retool_session_repo.dart';
+// import 'package:f_operation_project/data/repositories/user/memory_user_repo.dart';
+import 'package:f_operation_project/data/repositories/user/retool_user_repo.dart';
 import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
 import 'package:f_operation_project/domain/repositories/session_repository.dart';
 import 'package:f_operation_project/domain/repositories/user_repository.dart';
@@ -15,8 +17,10 @@ import 'package:get/get.dart';
 import 'ui/pages/authentication/login.dart';
 
 void main() {
-  Get.put<UserRepository>(MemoryUserRepository());
-  Get.put<SessionRepository>(MemorySessionRepository());
+  Get.put<UserRepository>(RetoolUserRepository());
+  Get.put<SessionRepository>(RetoolSessionRepository());
+  // Get.put<UserRepository>(MemoryUserRepository());
+  // Get.put<SessionRepository>(MemorySessionRepository());
   Get.put<AuthRepository>(MemoryAuthRepository());
   Get.put(GameUseCase());
   Get.put(AuthenticationUseCase());

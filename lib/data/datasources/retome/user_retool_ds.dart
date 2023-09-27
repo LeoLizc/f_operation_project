@@ -34,6 +34,8 @@ class RetoolUserDataSource {
   }
 
   Future<bool> createUser(User user) async {
+    print(user.toJson());
+
     final response = await http.post(
       Uri.parse(_url),
       headers: <String, String>{
@@ -41,7 +43,7 @@ class RetoolUserDataSource {
       },
       body: jsonEncode(user.toJson()),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return true;
     } else {
       throw Exception('Failed to create user');
@@ -52,7 +54,7 @@ class RetoolUserDataSource {
     final response = await http.delete(
       Uri.parse('$_url/${user.id}'),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return true;
     } else {
       throw Exception('Failed to delete user');

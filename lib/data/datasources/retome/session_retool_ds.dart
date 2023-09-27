@@ -20,7 +20,7 @@ class RetoolSessionDataSource {
 
   Future<List<GameSession>> getSessions() async {
     final response = await http.get(Uri.parse(_url));
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       final sessions = jsonDecode(response.body) as List;
       return sessions.map((e) => GameSession.fromJson(e)).toList();
     } else {
@@ -36,7 +36,7 @@ class RetoolSessionDataSource {
       },
       body: jsonEncode(session.toJson()),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return GameSession.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to update session');
@@ -51,7 +51,7 @@ class RetoolSessionDataSource {
       },
       body: jsonEncode(session.toJson()),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return true;
     } else {
       throw Exception('Failed to create session');
@@ -62,7 +62,7 @@ class RetoolSessionDataSource {
     final response = await http.delete(
       Uri.parse('$_url/${session.id}'),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return true;
     } else {
       throw Exception('Failed to delete session');
