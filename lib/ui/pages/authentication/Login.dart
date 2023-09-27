@@ -3,7 +3,6 @@
 import 'package:f_operation_project/ui/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'registro.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
