@@ -21,6 +21,8 @@ class AuthController extends GetxController {
 
   Future<bool> register(
       {required String username,
+      required firstName,
+      required lastName,
       required String password,
       required int grade,
       required String school,
@@ -34,8 +36,8 @@ class AuthController extends GetxController {
       difficultyLevel: 1,
       username: username,
       password: password,
-      firstName: '',
-      lastName: '',
+      firstName: firstName,
+      lastName: lastName,
     );
     return await _authUseCase.register(user);
   }

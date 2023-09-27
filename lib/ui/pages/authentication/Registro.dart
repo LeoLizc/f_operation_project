@@ -275,7 +275,9 @@ class RegistroP extends State<Registro> {
                                   grade: int.parse(_grade.text),
                                   school: _school.text,
                                   username: _user.text,
-                                  password: _password1.text)
+                                  password: _password1.text,
+                                  firstName: _nombre.text,
+                                  lastName: _apellido.text)
                               .then((value) {
                             if (value) {
                               Get.offAllNamed('/');
