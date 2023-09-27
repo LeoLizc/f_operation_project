@@ -220,7 +220,7 @@ class RegistroP extends State<Registro> {
                         });
                       }
                     },
-                    child: const Text("Registro exitoso")),
+                    child: const Text("Registrarse")),
               ],
             ),
           ),
