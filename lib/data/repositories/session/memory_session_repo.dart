@@ -25,9 +25,9 @@ class MemorySessionRepository implements SessionRepository {
   }
 
   @override
-  Future<GameSession> getSession({String? id, String? username}) {
-    return Future.value(_sessions.firstWhere((session) =>
-        session.id == int.parse(id!) || session.username == username));
+  Future<GameSession> getSession({int? id, String? username}) {
+    return Future.value(_sessions.firstWhere(
+        (session) => session.id == id! || session.username == username));
   }
 
   @override

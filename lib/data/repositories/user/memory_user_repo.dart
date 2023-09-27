@@ -26,8 +26,8 @@ class MemoryUserRepository implements UserRepository {
   }
 
   @override
-  Future<User> getUser({String? id, String? username}) {
-    return Future.value(_users.firstWhere(
-        (user) => user.id == int.parse(id!) || user.username == username));
+  Future<User> getUser({int? id, String? username}) {
+    return Future.value(_users
+        .firstWhere((user) => user.id == id! || user.username == username));
   }
 }
