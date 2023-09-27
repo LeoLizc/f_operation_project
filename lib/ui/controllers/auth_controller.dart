@@ -1,5 +1,4 @@
 import 'package:f_operation_project/domain/models/auth.dart';
-import 'package:f_operation_project/domain/models/user.dart';
 import 'package:f_operation_project/domain/use_cases/authentication_usecase.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +10,9 @@ class AuthController extends GetxController {
 
   bool get isAuthenticated => _isAuthenticated.value;
 
-  void login(String username, String password) async {
-    _isAuthenticated.value = await _authUseCase.login(username, password);
+  Future<bool> login(String username, String password) async {
+    return _isAuthenticated.value =
+        await _authUseCase.login(username, password);
   }
 
   void logout() async {
@@ -37,7 +37,6 @@ class AuthController extends GetxController {
       firstName: '',
       lastName: '',
     );
-    _isAuthenticated.value = await _authUseCase.register(user);
-    return _isAuthenticated.value;
+    return await _authUseCase.register(user);
   }
 }
