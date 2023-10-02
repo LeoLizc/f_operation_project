@@ -45,7 +45,7 @@ class RegisterModel {
     required String birthDate,
     required int grade,
     required String school,
-    required int difficultyLevel,
+    int difficultyLevel = 1,
     required String firstName,
     required String lastName,
   })  : userInformation = User(
