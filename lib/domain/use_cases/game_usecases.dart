@@ -6,6 +6,7 @@ import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
 import 'package:f_operation_project/domain/repositories/session_repository.dart';
 import 'package:f_operation_project/domain/repositories/user_repository.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 
 class GameUseCase {
   final AuthRepository _authRepository = Get.find<AuthRepository>();
@@ -15,12 +16,7 @@ class GameUseCase {
   List<Operation> startGame(int difficultyLevel) {
     List<Operation> operations = [];
     for (int i = 0; i < 6; i++) {
-      Operation operation = Operation(
-          operando1: (i + 1),
-          operando2: (i + 1) * 2 - 1,
-          operador: "+",
-          resultado: (i + 1) * 3 - 1);
-      operations.add(operation);
+      operations.add(_createOperation(difficultyLevel));
     }
     return operations;
   }
@@ -60,5 +56,88 @@ class GameUseCase {
     Auth me = (await _authRepository.me())!;
     User user = await _userRepository.getUser(username: me.username);
     return user.difficultyLevel;
+  }
+}
+
+Operation _createOperation(int level) {
+  var rng = Random();
+  int uno, dos;
+
+  switch (level) {
+    case 1:
+      uno = rng.nextInt(max(1, 10));
+      dos = rng.nextInt(max(1, 10));
+      return Operation(
+          operando1: uno, operando2: dos, operador: "+", resultado: uno + dos);
+
+    case 2:
+      uno = rng.nextInt(max(1, 100));
+      dos = rng.nextInt(max(1, 100));
+      return Operation(
+          operando1: uno, operando2: dos, operador: "+", resultado: uno + dos);
+
+    case 3:
+      if (rng.nextInt(3) == 1) {
+        uno = rng.nextInt(max(1, 100));
+        dos = rng.nextInt(max(1, 100));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "+",
+            resultado: uno + dos);
+      } else {
+        uno = rng.nextInt(max(1, 10));
+        dos = rng.nextInt(max(1, 10));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "*",
+            resultado: uno * dos);
+      }
+
+    case 4:
+      if (rng.nextInt(3) == 1) {
+        uno = rng.nextInt(max(100, 1000));
+        dos = rng.nextInt(max(100, 1000));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "+",
+            resultado: uno + dos);
+      } else {
+        uno = rng.nextInt(max(10, 100));
+        dos = rng.nextInt(max(1, 10));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "*",
+            resultado: uno * dos);
+      }
+
+    case 5:
+      if (rng.nextInt(3) == 1) {
+        uno = rng.nextInt(max(1000, 10000));
+        dos = rng.nextInt(max(100, 1000));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "+",
+            resultado: uno + dos);
+      } else {
+        uno = rng.nextInt(max(10, 100));
+        dos = rng.nextInt(max(10, 100));
+        return Operation(
+            operando1: uno,
+            operando2: dos,
+            operador: "*",
+            resultado: uno * dos);
+      }
+
+    default:
+      return Operation(
+          operando1: 1,
+          operando2: 2,
+          operador: "Esto es físicamente imposible",
+          resultado: 1 * 1);
   }
 }
