@@ -42,7 +42,7 @@ class GameUseCase {
       newDifficultyLevel = session.difficultyLevel - 1;
     }
 
-    Future(() async {
+    await Future(() async {
       Auth me = (await _authRepository.me())!;
       session.username = me.username;
 

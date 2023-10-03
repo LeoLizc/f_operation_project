@@ -38,7 +38,7 @@ class GameSession {
       identical(this, other) ||
       other is GameSession &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
+          // id == other.id &&
           username == other.username &&
           tSeconds == other.tSeconds &&
           score == other.score &&

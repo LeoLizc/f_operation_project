@@ -3,13 +3,13 @@ import 'package:f_operation_project/domain/models/user.dart';
 
 class Auth {
   final String username;
-  final String password;
+  final String? password;
   final String firstName;
   final String lastName;
 
   Auth({
     required this.username,
-    required this.password,
+    this.password,
     required this.firstName,
     required this.lastName,
   });
