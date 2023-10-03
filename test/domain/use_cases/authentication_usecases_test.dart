@@ -1,10 +1,10 @@
 import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:f_operation_project/domain/models/user.dart';
-import 'package:f_operation_project/domain/repositories/user_repository.dart';
 import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
+import 'package:f_operation_project/domain/repositories/user_repository.dart';
 import 'package:f_operation_project/domain/use_cases/authentication_usecase.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
