@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:f_operation_project/domain/models/operation.dart';
 import 'package:f_operation_project/domain/models/session.dart';
@@ -5,8 +7,6 @@ import 'package:f_operation_project/domain/models/user.dart';
 import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
 import 'package:f_operation_project/domain/repositories/session_repository.dart';
 import 'package:f_operation_project/domain/repositories/user_repository.dart';
-import 'package:get/get.dart';
-import 'dart:math';
 
 class GameUseCase {
   final AuthRepository _authRepository;

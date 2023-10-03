@@ -1,6 +1,5 @@
 import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:f_operation_project/domain/repositories/user_repository.dart';
-import 'package:get/get.dart';
 
 import '../repositories/auth_repositoy.dart';
 

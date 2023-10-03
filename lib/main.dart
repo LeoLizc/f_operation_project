@@ -1,9 +1,10 @@
 import 'package:f_operation_project/dependency_injection.dart';
 import 'package:f_operation_project/ui/controllers/auth_controller.dart';
-import 'package:f_operation_project/ui/pages/game/activity.dart';
 import 'package:f_operation_project/ui/pages/authentication/registro.dart';
+import 'package:f_operation_project/ui/pages/game/activity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'ui/pages/authentication/login.dart';
 
 void main() {
