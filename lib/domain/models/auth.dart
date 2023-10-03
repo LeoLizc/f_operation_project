@@ -22,6 +22,23 @@ class Auth {
       lastName: json['lastName'],
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Auth &&
+          runtimeType == other.runtimeType &&
+          username == other.username &&
+          password == other.password &&
+          firstName == other.firstName &&
+          lastName == other.lastName;
+
+  @override
+  int get hashCode =>
+      username.hashCode ^
+      password.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode;
 }
 
 class LoginModel {
@@ -32,6 +49,17 @@ class LoginModel {
     required this.username,
     required this.password,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LoginModel &&
+          runtimeType == other.runtimeType &&
+          username == other.username &&
+          password == other.password;
+
+  @override
+  int get hashCode => username.hashCode ^ password.hashCode;
 }
 
 // Class that represents the information needed to register a user.

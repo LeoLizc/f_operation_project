@@ -44,4 +44,25 @@ class User {
       'difficultyLevel': difficultyLevel,
     };
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is User &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          username == other.username &&
+          birthDate == other.birthDate &&
+          grade == other.grade &&
+          school == other.school &&
+          difficultyLevel == other.difficultyLevel;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      username.hashCode ^
+      birthDate.hashCode ^
+      grade.hashCode ^
+      school.hashCode ^
+      difficultyLevel.hashCode;
 }
