@@ -9,9 +9,17 @@ import 'package:get/get.dart';
 import 'dart:math';
 
 class GameUseCase {
-  final AuthRepository _authRepository = Get.find<AuthRepository>();
-  final SessionRepository _sessionRepository = Get.find<SessionRepository>();
-  final UserRepository _userRepository = Get.find<UserRepository>();
+  final AuthRepository _authRepository;
+  final SessionRepository _sessionRepository;
+  final UserRepository _userRepository;
+
+  GameUseCase(
+      {required AuthRepository authRepository,
+      required SessionRepository sessionRepository,
+      required UserRepository userRepository})
+      : _authRepository = authRepository,
+        _sessionRepository = sessionRepository,
+        _userRepository = userRepository;
 
   List<Operation> startGame(int difficultyLevel) {
     List<Operation> operations = [];

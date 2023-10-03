@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   // * DEPENDENCIES
-  final AuthenticationUseCase _authUseCase = Get.find<AuthenticationUseCase>();
+  final AuthenticationUseCase _authUseCase;
+
+  // * CONSTRUCTOR
+  AuthController(this._authUseCase);
 
   final RxBool _isAuthenticated = false.obs;
 

@@ -4,7 +4,9 @@ import 'package:f_operation_project/domain/use_cases/game_usecases.dart';
 import 'package:get/get.dart';
 
 class GameController extends GetxController {
-  final GameUseCase _gameUseCase = Get.find<GameUseCase>();
+  final GameUseCase _gameUseCase;
+
+  GameController(this._gameUseCase);
 
   final RxList<Operation> _operations = <Operation>[].obs;
   final RxInt _currentOperationIndex = 0.obs;

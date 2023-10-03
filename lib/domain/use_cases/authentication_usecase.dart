@@ -5,10 +5,14 @@ import 'package:get/get.dart';
 import '../repositories/auth_repositoy.dart';
 
 class AuthenticationUseCase {
-  final AuthRepository _repository = Get.find<AuthRepository>();
-  final UserRepository _userRepository = Get.find<UserRepository>();
+  final AuthRepository _repository;
+  final UserRepository _userRepository;
 
-  AuthenticationUseCase();
+  AuthenticationUseCase(
+      {required AuthRepository authRepository,
+      required UserRepository userRepository})
+      : _repository = authRepository,
+        _userRepository = userRepository;
 
   Future<bool> login(String username, String password) async {
     return await _repository
