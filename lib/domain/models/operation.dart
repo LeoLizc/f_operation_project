@@ -10,4 +10,21 @@ class Operation {
     required this.operador,
     required this.resultado,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Operation &&
+          runtimeType == other.runtimeType &&
+          operando1 == other.operando1 &&
+          operando2 == other.operando2 &&
+          operador == other.operador &&
+          resultado == other.resultado;
+
+  @override
+  int get hashCode =>
+      operando1.hashCode ^
+      operando2.hashCode ^
+      operador.hashCode ^
+      resultado.hashCode;
 }
