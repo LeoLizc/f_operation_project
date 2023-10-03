@@ -110,6 +110,7 @@ class NumpadInputState extends State<NumpadInput> {
     return Column(
       children: [
         Text(
+          key: const Key('numpad_input_text'),
           _input,
           style: const TextStyle(fontSize: 37, color: Colors.black),
         ),
@@ -117,6 +118,7 @@ class NumpadInputState extends State<NumpadInput> {
           height: 4,
         ),
         Numpad(
+          key: const Key('numpad'),
           onKeyPressed: _onKeyPressed,
           onClearPressed: _onClearPressed,
           onGoPressed: _onGoPressed,
