@@ -18,7 +18,7 @@ class AuthController extends GetxController {
         await _authUseCase.login(username, password);
   }
 
-  void logout() async {
+  Future<void> logout() async {
     _isAuthenticated.value = !(await _authUseCase.logout());
   }
 

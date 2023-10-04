@@ -89,4 +89,15 @@ class RegisterModel {
           firstName: firstName,
           lastName: lastName,
         );
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RegisterModel &&
+          runtimeType == other.runtimeType &&
+          userInformation == other.userInformation &&
+          authInformation == other.authInformation;
+
+  @override
+  int get hashCode => userInformation.hashCode ^ authInformation.hashCode;
 }
