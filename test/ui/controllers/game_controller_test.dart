@@ -2,8 +2,8 @@ import 'package:f_operation_project/domain/models/operation.dart';
 import 'package:f_operation_project/domain/models/session.dart';
 import 'package:f_operation_project/domain/use_cases/game_usecases.dart';
 import 'package:f_operation_project/ui/controllers/game_controller.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 class MockGameUseCase extends Mock implements GameUseCase {}
 
@@ -17,7 +17,7 @@ Matcher customSessionMatcher(
     if (actual is! GameSession) {
       return false;
     }
-    final session = actual as GameSession;
+    final session = actual; // as GameSession;//* Dart says is unnecessary
     return (username == null || session.username == username) &&
         (score == null || session.score == score) &&
         (tSeconds == null || session.tSeconds == tSeconds) &&

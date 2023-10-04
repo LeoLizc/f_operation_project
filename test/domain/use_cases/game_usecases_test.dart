@@ -27,6 +27,9 @@ class FakeUser extends Fake implements User {
       other is FakeUser &&
           runtimeType == other.runtimeType &&
           difficultyLevel == other.difficultyLevel;
+
+  @override
+  int get hashCode => difficultyLevel.hashCode;
 }
 
 Matcher isOperationWith(
@@ -38,7 +41,7 @@ Matcher isOperationWith(
     if (actual is! Operation) {
       return false;
     }
-    final operation = actual as Operation;
+    final operation = actual; // as Operation; //* Dart says is unnecessary
     return operation.operando1 == operando1 &&
         operation.operando2 == operando2 &&
         operation.operador == operador &&
@@ -55,7 +58,7 @@ Matcher isGameSessionWith(
     if (actual is! GameSession) {
       return false;
     }
-    final session = actual as GameSession;
+    final session = actual; // as GameSession; //* Dart says is unnecessary
     return session.username == username &&
         session.score == score &&
         session.tSeconds == tSeconds &&
@@ -115,7 +118,7 @@ void main() {
       test('returns a list of 6 operations', () {
         final operations = gameUseCase.startGame(1);
         expect(operations, hasLength(6));
-        expect(operations.every((op) => op is Operation), isTrue);
+        // expect(operations.every((op) => op is Operation), isTrue); //* Dart says is unnecessary
       });
     });
 
