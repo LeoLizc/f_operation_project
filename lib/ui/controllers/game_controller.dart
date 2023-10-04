@@ -23,7 +23,7 @@ class GameController extends GetxController {
   get score => _score;
   get operationIndex => _currentOperationIndex.value;
 
-  void startGame() async {
+  Future<void> startGame() async {
     _operations.clear();
     _score = 0;
 
