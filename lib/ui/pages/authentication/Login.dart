@@ -83,10 +83,10 @@ class LoginP extends State<Login> {
                             .login(_user.text, _password.text)
                             .then((value) {
                           if (value) {
-                            Get.snackbar("Bienvenido", "Iniciando seccion");
+                            // Get.snackbar("Bienvenido", "Iniciando seccion");
                           } else {
-                            Get.snackbar(
-                                "Error", "Usuario o contraseña incorrectos");
+                            // Get.snackbar(
+                            //     "Error", "Usuario o contraseña incorrectos");
                           }
                         });
                       }
