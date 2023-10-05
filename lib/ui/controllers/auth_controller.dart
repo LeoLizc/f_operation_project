@@ -13,6 +13,12 @@ class AuthController extends GetxController {
 
   bool get isAuthenticated => _isAuthenticated.value;
 
+  // @override
+  //   void onInit() {
+  //   super.onInit();
+  //   login();
+  // } Ver que pedo despues
+
   Future<bool> login(String username, String password) async {
     return _isAuthenticated.value =
         await _authUseCase.login(username, password);
