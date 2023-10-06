@@ -6,7 +6,17 @@ class RetoolUserDataSource {
   final String _url = 'https://retoolapi.dev/b2zbUw/data';
 
   Future<User> getUser({int? id, String? username}) async {
-    final response = await http.get(Uri.parse(_url));
+    String query = '';
+
+    if (id != null) {
+      query = '?id=$id';
+    } else if (username != null) {
+      query = '?username=$username';
+    }
+
+    final response = await http.get(Uri.parse(
+      _url + query,
+    ));
     if (response.statusCode == 200) {
       final users = jsonDecode(response.body) as List;
       final user = users.firstWhere(
