@@ -1,5 +1,6 @@
 import 'package:f_operation_project/data/repositories/auth/memory_auth_repository.dart';
-import 'package:f_operation_project/data/repositories/session/retool_session_repo.dart';
+import 'package:f_operation_project/data/repositories/session/hive_session_repo.dart';
+import 'package:f_operation_project/data/repositories/user/hive_user_repo.dart';
 import 'package:f_operation_project/data/repositories/user/retool_user_repo.dart';
 import 'package:f_operation_project/domain/repositories/auth_repositoy.dart';
 import 'package:f_operation_project/domain/repositories/session_repository.dart';
@@ -14,7 +15,7 @@ void setupDependencies() {
   // Repositorios
   Get.put<UserRepository>(RetoolUserRepository());
   Get.put<AuthRepository>(MemoryAuthRepository());
-  Get.put<SessionRepository>(RetoolSessionRepository());
+  Get.put<SessionRepository>(HiveSessionRepository());
 
   // Casos de uso
   Get.put<AuthenticationUseCase>(AuthenticationUseCase(
