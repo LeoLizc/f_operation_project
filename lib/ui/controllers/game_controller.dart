@@ -10,8 +10,10 @@ class GameController extends GetxController {
 
   final RxList<Operation> _operations = <Operation>[].obs;
   final RxInt _currentOperationIndex = 0.obs;
+  final RxInt _level = 0.obs;
   int _score = 0;
-  int level = 0;
+  int get level => _level.value;
+  set level(int value) => _level.value = value;
 
   Operation? get operation {
     if (_currentOperationIndex.value >= _operations.length) {
@@ -49,7 +51,7 @@ class GameController extends GetxController {
           difficultyLevel: level,
         ),
       );
-      startGame();
+      // startGame();
       // print(_currentOperationIndex.value);
       // print(_operations.length);
       return true;

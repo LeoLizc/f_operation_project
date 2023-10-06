@@ -43,7 +43,11 @@ class ActivityPage extends StatelessWidget {
                 NumpadInput(
                   key: UniqueKey(),
                   onGoPressed: (p0) {
-                    controller.answer(int.parse(p0));
+                    controller.answer(int.parse(p0)).then((value) {
+                      if (value) {
+                        Get.back(closeOverlays: true);
+                      }
+                    });
                   },
                 ),
                 // const SizedBox(height: 2),

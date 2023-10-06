@@ -14,8 +14,15 @@ class AuthenticationUseCase {
         _userRepository = userRepository;
 
   Future<bool> login(String username, String password) async {
-    return await _repository
+    bool success = await _repository
         .login(LoginModel(username: username, password: password));
+
+    if (success) {
+      _userRepository.getUser(username: username);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> logout() async {
