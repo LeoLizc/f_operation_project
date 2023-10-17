@@ -4,7 +4,7 @@ import 'package:f_operation_project/data/datasources/local/shared_preferences/sh
 import 'package:f_operation_project/domain/models/session.dart';
 
 class SessionSharedPrefDataSource {
-  SharedPreferencesDataSource _source = SharedPreferencesDataSource();
+  final SharedPreferencesDataSource _source = SharedPreferencesDataSource();
 
   Future<bool> saveSession(GameSession session) async {
     try {
@@ -37,6 +37,54 @@ class SessionSharedPrefDataSource {
       return sessions;
     } catch (e) {
       return [];
+    }
+  }
+
+  Future<bool> deleteAllSessions() async {
+    try {
+      var keys = await _getSessionKeys();
+      for (var key in keys) {
+        await _source.delete(key);
+      }
+      await _source.delete('keys');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<GameSession?> getSessionById(int id) async {
+    try {
+      var keys = await _getSessionKeys();
+      for (var key in keys) {
+        var sessionJson = await _source.get<String>(key);
+        var sessionFromJson = GameSession.fromJson(jsonDecode(sessionJson!));
+        if (sessionFromJson.id == id) {
+          return sessionFromJson;
+        }
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> removeSession(GameSession session) async {
+    try {
+      var keys = await _getSessionKeys();
+      for (var key in keys) {
+        var sessionJson = await _source.get<String>(key);
+        var sessionFromJson = GameSession.fromJson(jsonDecode(sessionJson!));
+        if (sessionFromJson.id == session.id) {
+          await _source.delete(key);
+          keys.remove(key);
+          await _source.save<List<String>>('keys', keys);
+          return true;
+        }
+      }
+      return false;
+    } catch (e) {
+      return false;
     }
   }
 

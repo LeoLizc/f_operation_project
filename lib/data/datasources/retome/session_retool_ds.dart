@@ -18,8 +18,12 @@ class RetoolSessionDataSource {
     }
   }
 
-  Future<List<GameSession>> getSessions() async {
-    final response = await http.get(Uri.parse(_url));
+  Future<List<GameSession>> getSessions({String? username}) async {
+    final queryParameters = {
+      if (username != null) 'username': username,
+    };
+
+    final response = await http.get(Uri.https(_url, '', queryParameters));
     if (response.statusCode < 300) {
       final sessions = jsonDecode(response.body) as List;
       return sessions.map((e) => GameSession.fromJson(e)).toList();

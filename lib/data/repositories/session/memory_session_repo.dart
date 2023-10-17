@@ -31,7 +31,9 @@ class MemorySessionRepository implements SessionRepository {
   }
 
   @override
-  Future<List<GameSession>> getSessions() {
-    return Future.value(_sessions);
+  Future<List<GameSession>> getSessions({String? username}) {
+    return Future.value(
+      _sessions.where((session) => session.username == username).toList(),
+    );
   }
 }

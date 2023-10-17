@@ -4,7 +4,7 @@ import 'package:f_operation_project/data/datasources/local/shared_preferences/sh
 import 'package:f_operation_project/domain/models/user.dart';
 
 class UserSharedPreferencesDataSource {
-  SharedPreferencesDataSource _sharedPreferences =
+  final SharedPreferencesDataSource _sharedPreferences =
       SharedPreferencesDataSource();
 
   Future<bool> saveUser(User user) async {

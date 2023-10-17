@@ -23,6 +23,10 @@ class SharedPreferencesDataSource {
     }
   }
 
+  Future<bool> delete(String key) async {
+    return await sharedPreferences.remove(key);
+  }
+
   Future<T?> get<T>(String key) async {
     if (T == String) {
       return sharedPreferences.getString(key) as T?;

@@ -21,7 +21,7 @@ class RetoolSessionRepository implements SessionRepository {
   }
 
   @override
-  Future<List<GameSession>> getSessions() {
-    return _dataSource.getSessions();
+  Future<List<GameSession>> getSessions({String? username}) {
+    return _dataSource.getSessions(username: username);
   }
 }

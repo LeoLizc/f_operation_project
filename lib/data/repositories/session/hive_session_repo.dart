@@ -52,10 +52,10 @@ class HiveSessionRepository implements SessionRepository {
   }
 
   @override
-  Future<List<GameSession>> getSessions() async {
+  Future<List<GameSession>> getSessions({String? username}) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     return connectivityResult == ConnectivityResult.none
         ? _dataSourceH.getSessions()
-        : _dataSource.getSessions();
+        : _dataSource.getSessions(username: username);
   }
 }
