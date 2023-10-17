@@ -35,7 +35,16 @@ class SharedPreferencesDataSource {
     } else if (T == List<String>) {
       return sharedPreferences.getStringList(key) as T?;
     } else {
-      throw Exception('SharedPreferencesDataSource: Type not supported');
+      // try to cast the type
+      try {
+        if (T == List) {
+          return sharedPreferences.getStringList(key) as T?;
+        } else {
+          return sharedPreferences.getString(key) as T?;
+        }
+      } catch (e) {
+        throw Exception('SharedPreferencesDataSource: Type not supported');
+      }
     }
   }
 
