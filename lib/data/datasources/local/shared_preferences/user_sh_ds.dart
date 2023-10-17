@@ -19,6 +19,10 @@ class UserSharedPreferencesDataSource {
     }
   }
 
+  bool exists() {
+    return _sharedPreferences.exists('User');
+  }
+
   Future<User?> getUser() async {
     try {
       var userJson = await _sharedPreferences.get<String>('User');
