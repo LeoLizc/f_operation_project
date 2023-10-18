@@ -17,6 +17,16 @@ class ActivityPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Activity'),
+          actions: [
+            Obx(() => Row(
+                  children: [
+                    const Text('Score: ', style: const TextStyle(fontSize: 20)),
+                    Text(controller.score.toString(),
+                        style: const TextStyle(fontSize: 20)),
+                    const SizedBox(width: 20),
+                  ],
+                ))
+          ],
         ),
         body: Padding(
             padding:
@@ -63,7 +73,7 @@ class ActivityPage extends StatelessWidget {
                       } else {
                         await AwesomeDialog(
                           context: context,
-                          dialogType: DialogType.SUCCES,
+                          dialogType: DialogType.success,
                           animType: AnimType.topSlide,
                           showCloseIcon: true,
                           title: "Correcto",

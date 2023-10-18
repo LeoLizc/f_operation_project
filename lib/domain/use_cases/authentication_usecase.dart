@@ -38,4 +38,8 @@ class AuthenticationUseCase {
       return false;
     }
   }
+
+  bool isAuthenticated() {
+    return _repository.isLogged;
+  }
 }

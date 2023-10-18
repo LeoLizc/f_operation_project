@@ -11,7 +11,7 @@ class GameController extends GetxController {
   final RxList<Operation> _operations = <Operation>[].obs;
   final RxInt _currentOperationIndex = 0.obs;
   final RxInt _level = 0.obs;
-  int _score = 0;
+  RxInt _score = 0.obs;
   int get level => _level.value;
   set level(int value) => _level.value = value;
 
@@ -22,12 +22,12 @@ class GameController extends GetxController {
     return _operations[_currentOperationIndex.value];
   }
 
-  get score => _score;
+  get score => _score.value;
   get operationIndex => _currentOperationIndex.value;
 
   Future<void> startGame() async {
     _operations.clear();
-    _score = 0;
+    _score.value = 0;
 
     if (level == 0) {
       level = await _gameUseCase.getDifficultyLevel();
@@ -46,7 +46,7 @@ class GameController extends GetxController {
     if (operationIndex >= _operations.length) {
       level = await _gameUseCase.cambiarDificultad(
         GameSession(
-          score: _score,
+          score: score,
           tSeconds: 0,
           difficultyLevel: level,
         ),
