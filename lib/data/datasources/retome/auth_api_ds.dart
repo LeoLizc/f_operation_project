@@ -8,8 +8,8 @@ class ApiAuthDataSource {
 
   Future<bool> register(Auth info) async {
     try {
-      var response = await http.post(Uri.parse('$_baseUrl/auth/register'),
-          body: info.toJson());
+      var response =
+          await http.post(Uri.parse('$_baseUrl/register'), body: info.toJson());
 
       if (response.statusCode < 300) {
         return true;
@@ -23,8 +23,8 @@ class ApiAuthDataSource {
 
   Future<String?> login(LoginModel auth) async {
     try {
-      var response = await http.post(Uri.parse('$_baseUrl/auth/login'),
-          body: auth.toJson());
+      var response =
+          await http.post(Uri.parse('$_baseUrl/login'), body: auth.toJson());
 
       if (response.statusCode < 300) {
         return jsonDecode(response.body)['access_token'];
@@ -39,7 +39,7 @@ class ApiAuthDataSource {
   Future<Auth> me(String token) async {
     try {
       var response = await http.get(
-        Uri.parse('$_baseUrl/auth/me'),
+        Uri.parse('$_baseUrl/me'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token'
@@ -59,7 +59,7 @@ class ApiAuthDataSource {
   Future<String> refreshToken(String token) async {
     try {
       var response = await http.post(
-        Uri.parse('$_baseUrl/auth/refresh'),
+        Uri.parse('$_baseUrl/refresh'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token'
