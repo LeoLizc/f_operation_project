@@ -52,6 +52,31 @@ class SharedPreferencesDataSource {
     }
   }
 
+  T? syncGet<T>(String key) {
+    if (T == String) {
+      return sharedPreferences.getString(key) as T?;
+    } else if (T == int) {
+      return sharedPreferences.getInt(key) as T?;
+    } else if (T == double) {
+      return sharedPreferences.getDouble(key) as T?;
+    } else if (T == bool) {
+      return sharedPreferences.getBool(key) as T?;
+    } else if (T == List<String>) {
+      return sharedPreferences.getStringList(key) as T?;
+    } else {
+      // try to cast the type
+      try {
+        if (T == List) {
+          return sharedPreferences.getStringList(key) as T?;
+        } else {
+          return sharedPreferences.getString(key) as T?;
+        }
+      } catch (e) {
+        throw Exception('SharedPreferencesDataSource: Type not supported');
+      }
+    }
+  }
+
   Future<void> remove(String key) async {
     await sharedPreferences.remove(key);
   }

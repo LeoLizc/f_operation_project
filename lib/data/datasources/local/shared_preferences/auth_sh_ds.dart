@@ -24,4 +24,30 @@ class AuthSharedPrefDataSource {
       return null;
     }
   }
+
+  String get token {
+    try {
+      var token = _sharedPreferences.syncGet<String>('token');
+      return token!;
+    } catch (e) {
+      return '';
+    }
+  }
+
+  Future<bool> deleteToken() async {
+    try {
+      await _sharedPreferences.delete('token');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool tokenExists() {
+    try {
+      return _sharedPreferences.exists('token');
+    } catch (e) {
+      return false;
+    }
+  }
 }
