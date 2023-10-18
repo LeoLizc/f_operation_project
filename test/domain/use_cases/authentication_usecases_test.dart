@@ -55,6 +55,14 @@ void main() {
     test('login returns true when successful', () async {
       // Arrange
       when(() => mockAuthRepository.login(any())).thenAnswer((_) async => true);
+      when(() => mockUserRepository.getUser(username: any(named: 'username')))
+          .thenAnswer((invocation) async => User(
+                username: 'username',
+                birthDate: '01/01/2000',
+                grade: 5,
+                school: 'Estrellitas del Mañana',
+                difficultyLevel: 1,
+              ));
 
       // Act
       final result = await authenticationUseCase.login('username', 'password');

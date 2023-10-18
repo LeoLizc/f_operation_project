@@ -125,7 +125,7 @@ void main() {
               .captured
               .last,
           customSessionMatcher(score: 2));
-      expect(gameController.operationIndex, 0);
+      expect(gameController.operationIndex, 2);
       expect(gameController.level, level + 1);
       expect(result, true);
     });
