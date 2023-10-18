@@ -18,10 +18,17 @@ class Auth {
     return Auth(
       username: json['username'],
       password: json['password'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'username': username,
+        'password': password,
+        'first_name': firstName,
+        'last_name': lastName,
+      };
 
   @override
   bool operator ==(Object other) =>
@@ -49,6 +56,18 @@ class LoginModel {
     required this.username,
     required this.password,
   });
+
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
+    return LoginModel(
+      username: json['username'],
+      password: json['password'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'username': username,
+        'password': password,
+      };
 
   @override
   bool operator ==(Object other) =>
