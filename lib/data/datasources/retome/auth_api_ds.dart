@@ -4,12 +4,18 @@ import 'package:f_operation_project/domain/models/auth.dart';
 import 'package:http/http.dart' as http;
 
 class ApiAuthDataSource {
-  final String _baseUrl = 'http://localhost:8000/api/v1';
+  final String _baseUrl =
+      'http://ip172-18-0-74-cknlmbmfml8g00bp7h1g-8000.direct.labs.play-with-docker.com';
 
   Future<bool> register(Auth info) async {
     try {
-      var response =
-          await http.post(Uri.parse('$_baseUrl/register'), body: info.toJson());
+      var response = await http.post(
+        Uri.parse('$_baseUrl/register'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(info.toJson()),
+      );
 
       if (response.statusCode < 300) {
         return true;
@@ -23,8 +29,13 @@ class ApiAuthDataSource {
 
   Future<String?> login(LoginModel auth) async {
     try {
-      var response =
-          await http.post(Uri.parse('$_baseUrl/login'), body: auth.toJson());
+      var response = await http.post(
+        Uri.parse('$_baseUrl/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(auth.toJson()),
+      );
 
       if (response.statusCode < 300) {
         return jsonDecode(response.body)['access_token'];

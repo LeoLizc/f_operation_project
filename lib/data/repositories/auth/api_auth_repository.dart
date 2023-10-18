@@ -17,6 +17,10 @@ class ApiAuthRepository implements AuthRepository {
 
     if (token != null) {
       await _authSharedPrefDataSource.saveToken(token);
+
+      var me = await _apiAuthDataSource.me(token);
+      await _authSharedPrefDataSource.saveMe(me);
+
       return true;
     } else {
       return false;
@@ -36,8 +40,7 @@ class ApiAuthRepository implements AuthRepository {
   @override
   Future<Auth?> me() async {
     if (_authSharedPrefDataSource.tokenExists()) {
-      var token = _authSharedPrefDataSource.token;
-      var auth = await _apiAuthDataSource.me(token);
+      var auth = await _authSharedPrefDataSource.getMe();
       return auth;
     } else {
       return null;

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:f_operation_project/data/datasources/local/shared_preferences/shared_preferences_ds.dart';
+import 'package:f_operation_project/domain/models/auth.dart';
 
 class AuthSharedPrefDataSource {
   final SharedPreferencesDataSource _sharedPreferences =
@@ -48,6 +51,28 @@ class AuthSharedPrefDataSource {
       return _sharedPreferences.exists('token');
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<bool> saveMe(Auth me) async {
+    try {
+      _sharedPreferences.save('me', jsonEncode(me.toJson()));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<Auth?> getMe() async {
+    try {
+      var me = await _sharedPreferences.get<String>('me');
+      if (me != null) {
+        return Auth.fromJson(jsonDecode(me));
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
     }
   }
 }
